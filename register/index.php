@@ -1,11 +1,14 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once "../config.php";
 
 // Don't touch this
 $secret_key = HCAPTCHA_SECRET;
 $site_key = HCAPTCHA_SITEKEY;
 
-$username = $password = $confirm_password = $licence_key = "";;
+$username = $password = $confirm_password = $licence_key = "";
 $username_err = $password_err = $confirm_password_err = $licence_key_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -69,10 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    if (empty(trim($_POST["confirm_password"]))) {
+    if (empty(trim($_POST["password_confirmation"]))) {
         $confirm_password_err = "Please confirm the password.";
     } else {
-        $confirm_password = trim($_POST["confirm_password"]);
+        $confirm_password = trim($_POST["password_confirmation"]);
         if (empty($password_err) && ($password != $confirm_password)) {
             $confirm_password_err = "Password did not match.";
         }
@@ -140,6 +143,19 @@ function generateRandom($length) {
 
     return $key;
 }
+function showErrorMessage($message, $timeout = 5) {
+    echo '<div id="error-box" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #FF6B6B; color: #FFFFFF; padding: 10px; border-radius: 5px; z-index: 9999;">';
+    echo $message;
+    echo '</div>';
+
+    echo '<script>';
+    echo 'setTimeout(function() {';
+    echo 'var errorBox = document.getElementById("error-box");';
+    echo 'if (errorBox) { errorBox.remove(); }';
+    echo '}, ' . ($timeout * 1000) . ');';
+    echo '</script>';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -151,160 +167,98 @@ function generateRandom($length) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" type="image/x-icon" href="<?php echo LOGO ?>">
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #191919;
-            color: white;
-            margin:0;
-            padding:0;
-            font-family: sans-serif;
-        }
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="../assets/fontwesome/css/font-awesome.min.css">
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            height: 100vh;
-            margin-top: 10%;
-        }
-
-        .box {
-            background-color: #1E1E1E;
-            border-radius: 30px;
-            padding: 35px;
-            text-align: center;
-            margin-bottom: 20%;
-        }
-
-
-        .box h2 {
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .box p {
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .box input {
-           border-radius: 10px;
-        }
-
-
-        .wrapper h2 {
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .wrapper p {
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control {
-            background-color: #333;
-            border: none;
-            border-radius: 0;
-            color: white;
-        }
-
-        .form-control:focus {
-            box-shadow: none;
-        }
-
-        .invalid-feedback {
-            display: block;
-            color: #ff6b81;
-        }
-
-        .btn-primary {
-            background-color: #8118cc;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 16px 32px;
-            text-decoration: none;
-            margin: 4px 2px;
-            cursor: pointer;
-            transition: background-color 250ms;
-        }
-
-        .btn-primary:hover {
-            background-color: #6f15b0;
-        }
-
-        .btn-secondary {
-            background-color: #444;
-            border: none;
-            border-radius: 25px;
-            padding: 16px 32px;
-            text-decoration: none;
-            margin: 4px 2px;
-            cursor: pointer;
-            transition: background-color 250ms;
-        }
-
-        .btn-secondary:hover {
-            background-color: #555;
-        }
-
-        p.login-link {
-            margin-top: 20px;
-            color: white;
-        }
-
-        p.login-link a {
-            color: #9b2deb;
-        }
-
-        p.login-link a:hover {
-            color: #8c18de;
-        }
-
-    </style>
 </head>
-<body class="back-row-toggle splat-toggle">
-<div class="container">
-    <div class="box">
-        <h2>Sign Up</h2>
-        <p>Please fill out this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+<body>
+<main>
+    <div class="fixed w-full h-full bg-center bg-cover bg-no-repeat bg-theme-background-mobile sm:bg-theme-background"></div>
+    <div class="relative w-full h-full table">
+        <div class="table-cell align-middle px-5 py-14">
+            <div class="bg-main border-1 border-stone-500/5 rounded-md shadow-4xl max-w-md w-full text-center mx-auto p-10 animate-slide-up">
+                <a href="https://clapped.rip/" title="Home">
+                    <img id="skull" src="https://cdn.discordapp.com/attachments/1022531334536699934/1115141783396044830/skull.png" alt="logo">
+                </a>
+
+                <form action="index.php" method="post">
+                    <div class="mb-5 w-full text-left input-container">
+                        <label for="username">Username</label>
+                        <div class="flex w-full rounded-md overflow-hidden">
+                            <div class="bg-gray-200 w-16 text-center py-4">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <input type="text" name="username" placeholder="Username" class="bg-secondary text-gray-400 w-full p-4 focus:bg-primary focus:ring-0" style="background-color: #f2f2f2;">
+                            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-5 w-full text-left input-container">
+                        <label for="password">Password</label>
+                        <div class="flex w-full rounded-md overflow-hidden">
+                            <div class="bg-gray-200 w-16 text-center py-4">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <input type="password" name="password" placeholder="Password" class="bg-secondary text-gray-400 w-full p-4 focus:bg-primary focus:ring-0">
+                        </div>
+                        <?php if (!empty($password_err)): ?>
+                            <p class="text-red-500"><?php echo $password_err; ?></p>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="mb-5 w-full text-left input-container">
+                        <label for="username">Password Confirmation</label>
+                        <div class="flex w-full rounded-md overflow-hidden">
+                            <div class="bg-gray-200 w-16 text-center py-4">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <input type="password" name="password_confirmation" placeholder="Confirm Password" class="bg-secondary text-gray-400 w-full p-4 focus:bg-primary focus:ring-0">
+                        </div>
+                        <?php if (!empty($confirm_password_err)): ?>
+                            <p class="text-red-500"><?php echo $confirm_password_err; ?></p>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="mb-5 w-full text-left input-container">
+                        <label for="license_key">License Key</label>
+                        <div class="flex w-full rounded-md overflow-hidden">
+                            <div class="bg-gray-200 w-16 text-center py-4">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <input type="text" name="license_key" placeholder="License Key" class="bg-secondary text-gray-400 w-full p-4 focus:bg-primary focus:ring-0">
+
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center my-4">
+                        <div class="h-captcha" data-theme="dark" data-size="normal" data-sitekey="<?php echo $site_key; ?>"></div>
+                        <span class="invalid-feedback"><?php echo $captcha_err; ?></span>
+                    </div>
+
+                    <div class="mx-auto my-6 max-w-xs">
+                        <p style="color: gray">
+                            By registering, you agree to our
+                            <a href="https://clapped.rip/legal" title="Terms of Service" target="_blank" >Terms of Service</a>
+                            and
+                            <a href="https://clapped.rip/legal" title="Privacy Policy" target="_blank" >Privacy Policy</a>.
+                        </p>
+                    </div>
+
+                    <div class="my-4">
+                        <button class="btn-submit button" type="submit" title="Register">Register</button>
+                    </div>
+                    <div class="mx-auto my-6 max-w-xs">
+                        <p style="color: gray">
+                            Already have an account? <a href="../login">Login here</a>.
+                        </p>
+                    </div>
+                </form>
+
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Licence Key</label>
-                <input type="text" name="licence_key" class="form-control <?php echo (!empty($licence_key_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $licence_key; ?>">
-                <span class="invalid-feedback"><?php echo $licence_key_err; ?></span>
-            </div>
-            <div class="form-group">
-                <div class="h-captcha" data-sitekey="<?php echo $site_key; ?>"></div>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
-            </div>
-            <p class="login-link">Already have an account? <a href="login">Login here</a>.</p>
-        </form>
+        </div>
     </div>
-</div>
+</main>
 </body>
 </html>
