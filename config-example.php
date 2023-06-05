@@ -78,7 +78,7 @@ $firewall = new CloudFirewall('[CLOUDFLAREEMAIL]', '[CLOUDFLAREKEY]', '[CLOUDFLA
 $firewall->sqlInjectionBlock(false);
 $firewall->xssInjectionBlock(false);
 $firewall->cookieStealBlock(false);
-//$firewall->antiFlood(5, 20, 5, false);
+//$firewall->antiFlood(5, 20, 5, false)
 
 // if($_SERVER["SCRIPT_NAME"] != "/x/functions.php"){
 // 	if($_SERVER['HTTP_HOST']=="127.0.0.1"){ header("HTTP/1.0 404 Not Found"); die(); }
