@@ -70,16 +70,19 @@ if ($stmt = mysqli_prepare($link, "SELECT username FROM users WHERE apikey = ?")
     }
 }
 
-require_once(__DIR__."/x/CloudFirewall.php");
-use CF\CloudFirewall;
+require('waf.php');
+$aWAF = new aWAF();
 
-$firewall = new CloudFirewall('[CLOUDFLAREEMAIL]', '[CLOUDFLAREKEY]', '[CLOUDFLAREZONE]');
+$aWAF->useCloudflare();
+$aWAF->antiCookieSteal('username');
 
-$firewall->sqlInjectionBlock(false);
-$firewall->xssInjectionBlock(false);
-$firewall->cookieStealBlock(false);
-//$firewall->antiFlood(5, 20, 5, false)
+$aWAF->checkGET();
+$aWAF->checkPOST();
+$aWAF->checkCOOKIE();
 
+$aWAF->start();
+
+// If u want to disable the functions.php, uncomment this
 // if($_SERVER["SCRIPT_NAME"] != "/x/functions.php"){
 // 	if($_SERVER['HTTP_HOST']=="127.0.0.1"){ header("HTTP/1.0 404 Not Found"); die(); }
 // }
