@@ -5,8 +5,8 @@ require_once "../config.php";
 $secret_key = HCAPTCHA_SECRET;
 $site_key = HCAPTCHA_SITEKEY;
 
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = $confirm_password = $licence_key = "";;
+$username_err = $password_err = $confirm_password_err = $licence_key_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
