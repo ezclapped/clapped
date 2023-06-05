@@ -20,6 +20,8 @@ if ($stmt = mysqli_prepare($link, $sql)) {
     mysqli_stmt_close($stmt);
 }
 
+require_once "../config.php";
+
 
 $username = $_SESSION["username"];
 $filename = $username . ".sxcu";
@@ -27,7 +29,7 @@ $jsonContent = '{
   "Version": "14.1.0",
   "DestinationType": "clapped",
   "RequestMethod": "POST",
-  "RequestURL": "https://clapped.rip/x/upload.php",
+  "RequestURL": "https://' . URL . '/x/upload.php",
   "Body": "MultipartFormData",
   "Arguments": {
     "key": "' . $apiKey . '"

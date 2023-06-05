@@ -3,6 +3,7 @@
 define('WEBSITE_NAME', '');
 define('LOGO', '');
 define('DISCORD_INV', '');
+define('URL', '');
 
 $mediafolder = 'media';
 $sitename = $_SERVER['SERVER_NAME'];
