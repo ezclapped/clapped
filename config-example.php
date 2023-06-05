@@ -69,3 +69,17 @@ if ($stmt = mysqli_prepare($link, "SELECT username FROM users WHERE apikey = ?")
         $author = null;
     }
 }
+
+require_once(__DIR__."/x/CloudFirewall.php");
+use CF\CloudFirewall;
+
+$firewall = new CloudFirewall('[CLOUDFLAREEMAIL]', '[CLOUDFLAREKEY]', '[CLOUDFLAREZONE]');
+
+$firewall->sqlInjectionBlock(false);
+$firewall->xssInjectionBlock(false);
+$firewall->cookieStealBlock(false);
+//$firewall->antiFlood(5, 20, 5, false);
+
+// if($_SERVER["SCRIPT_NAME"] != "/x/functions.php"){
+// 	if($_SERVER['HTTP_HOST']=="127.0.0.1"){ header("HTTP/1.0 404 Not Found"); die(); }
+// }

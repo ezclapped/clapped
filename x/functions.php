@@ -46,6 +46,7 @@ function remove_exif($in, $out)
     fclose($fd_out);
     fclose($fd_in);
 }
+
 function GeneratePage($length, $file, $userFolder)
 {
     include '../config.php';
