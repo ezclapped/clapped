@@ -10,3 +10,8 @@ RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.+)$ $1.php [L,QSA]
 
 </IfModule>
+
+<Directory media/>
+     Order Deny,Allow
+     Deny from All
+ </Directory>

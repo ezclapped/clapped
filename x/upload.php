@@ -4,7 +4,11 @@ include "functions.php";
 include "../config.php";
 
 if (isset($_POST["key"])) {
-    $apiKey = $_POST["key"];
+    if(!isset($_POST["key"])){
+        $apiKey = $_SERVER['PHP_AUTH_PW'];
+    }else{
+        $apiKey = $_POST["key"];
+    }
     $sql = "SELECT folder FROM users WHERE apikey = ?";
     $stmt = mysqli_prepare($link, $sql);
     mysqli_stmt_bind_param($stmt, "s", $apiKey);
