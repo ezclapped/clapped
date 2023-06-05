@@ -29,7 +29,7 @@ $jsonContent = '{
   "Version": "14.1.0",
   "DestinationType": "clapped",
   "RequestMethod": "POST",
-  "RequestURL": "https://' . $URL . '/x/upload.php",
+  "RequestURL": "https://' . URL . '/x/upload.php",
   "Body": "MultipartFormData",
   "Arguments": {
     "key": "' . $apiKey . '"
