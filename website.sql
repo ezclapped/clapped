@@ -9,8 +9,8 @@ CREATE TABLE `users` (
     `is_admin` BOOLEAN DEFAULT FALSE,
     `is_banned` BOOLEAN DEFAULT FALSE,
     `apikey` varchar(50) NOT NULL,
-    `created_at` datetime DEFAULT current_timestamp()
-    `folder` varchar(255) NOT NULL,
+    `created_at` datetime DEFAULT current_timestamp(),
+    `folder` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE licensekeys (
