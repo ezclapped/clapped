@@ -1,30 +1,117 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang='en'>
-   <head>
-      <meta name='theme-color' content='%color%'>
-      <meta name='twitter:card' content='summary_large_image'>
-      <meta name='twitter:image' content='/%mediafolder%/%userfolder%/%generatedSymbols%/image.%fileType%'>
-      <meta name='twitter:image:src' content='/%mediafolder%/%userfolder%/%generatedSymbols%/image.%fileType%'>
-      <meta name='twitter:title' content='Uploaded to %sitename%'>
-      <meta property='og:description' content='%originalName% (%fileSize% KB)'/>
-      <meta property='og:site_name' content='%author%'>
-      <meta name='twitter:site' content='%author%'>
-      
-      <link rel='stylesheet' href='../.././assets/main.css'>
-      <script src='https://use.fontawesome.com/releases/v6.0.0/js/all.js' integrity='sha384-l+HksIGR+lyuyBo1+1zCBSRt6v4yklWu7RbG0Cv+jDLDD9WFcEIwZLHioVB4Wkau' crossorigin='anonymous'></script>
-      <title>%originalName%</title>
-   </head>
-   <body>
-      <div class='container'>
-         <div class='content'>
-            <h3>%originalName%</h3>
-            <h4>%fileSize% KB</h4>
-            <br>
-            <img src='/%mediafolder%/%userfolder%/%generatedSymbols%/image.%fileType%' alt='image' />
-            <h3>Uploaded At: %uploadTime% UTC+1</h3>
-            <a href='/%mediafolder%/%userfolder%/%generatedSymbols%/image.%fileType%' download='image.%fileType%' class="btn">
-               <i class="fas fa-cloud-download-alt white-icon"></i> Download</a>
-         </div>
-      </div>
-   </body>
+<head>
+   <meta name='theme-color' content='%color%'>
+   <meta name='twitter:card' content='summary_large_image'>
+   <meta name='twitter:image' content='/%mediafolder%/%userfolder%/%generatedSymbols%/image.%fileType%'>
+   <meta name='twitter:image:src' content='/%mediafolder%/%userfolder%/%generatedSymbols%/image.%fileType%'>
+   <meta name='twitter:title' content='Uploaded to %sitename%'>
+   <meta property='og:description' content='%originalName% (%fileSize% KB)'/>
+   <meta property='og:site_name' content='%author%'>
+   <meta name='twitter:site' content='%author%'>
+
+
+   <script src='https://use.fontawesome.com/releases/v6.0.0/js/all.js' integrity='sha384-l+HksIGR+lyuyBo1+1zCBSRt6v4yklWu7RbG0Cv+jDLDD9WFcEIwZLHioVB4Wkau' crossorigin='anonymous'></script>
+   <title>%originalName%</title>
+   <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+      body {
+         background-size: contain;
+         background-repeat: no-repeat;
+         background-color: #1E1E1E;
+         overflow: hidden;
+      }
+      .container {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+         width: 100%;
+         height: 100vh;
+
+      }
+      .content {
+         background-color: #1e1e1e31;
+         border-radius: 15px;
+         padding: 3vh 1vw;
+         padding-bottom: 1.5vh;
+         display: flex;
+         backdrop-filter: blur(10px);
+         flex-direction: column;
+         box-shadow: 0px 0px 19px 7px rgba(0, 0, 0, 0.46);
+         -webkit-box-shadow: 0px 0px 19px 7px rgba(0, 0, 0, 0.46);
+         -moz-box-shadow: 0px 0px 19px 7px rgba(0, 0, 0, 0.46);
+      }
+      img {
+         border-radius: 6px;
+         height: auto;
+         max-width: 100%; max-height: 65vh; width: auto;
+      }
+      figcaption {
+         margin-top: 2.5vh;
+         background: linear-gradient(
+                 90deg,
+                 rgb(162, 0, 255) 40%,
+                 rgba(142, 209, 252, 1) 58%
+         );
+
+         -webkit-text-fill-color: transparent;
+         font-family: "Roboto", sans-serif;
+      }
+      .btn {
+         color: white;
+         margin: 4px 2px;
+         backdrop-filter: blur(30px);
+         background-color: #00000051;
+         padding: 15px;
+         border-radius: 25px;
+         font-family: Roboto, sans-serif;
+      }
+      a:link {
+         text-decoration: none;
+      }
+
+      a:visited {
+         text-decoration: none;
+      }
+
+      a:hover {
+         text-decoration: none;
+      }
+
+      a:active {
+         text-decoration: none;
+      }
+
+      h3, h2, h1, h4 {
+         color: white;
+         font-style: normal;
+         font-family: Roboto, sans-serif;
+      }
+
+   </style>
+   <script src='../../../assets/js/PureSnow.js'></script>
+   <link rel='stylesheet' href='../../../assets/css/PureSnow.css'>
+</head>
+
+<body>
+<div id="snowcontainer">
+
+   <div id="snow"></div>
+
+</div>
+<div class='container'>
+   <div class='content'>
+      <h1>Uploaded by <b style="color: rgb(141, 59, 141); font-family: Roboto, sans-serif; font-weight: bold;">%author%</b></h1>
+      <h2>%originalName% <b style="color: grey;">(%fileSize% KB)</b></h2>
+      <br>
+      <img src='/%mediafolder%/%userfolder%/%generatedSymbols%/image.%fileType%' alt='image' />
+      <h3 style="font-family: Roboto, sans-serif">Uploaded At: %uploadTime% (UTC+1)</h3>
+      <br>
+      <a href='/%mediafolder%/%userfolder%/%generatedSymbols%/image.%fileType%' download='image.%fileType%' class="btn">
+         <i class="fas fa-cloud-download-alt white-icon"></i> Download
+      </a>
+   </div>
+</div>
+</body>
 </html>
