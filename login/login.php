@@ -1,46 +1,59 @@
-<?php 
+<?php
+session_start();
 require_once "../config.php";
+$secret_key = HCAPTCHA_SECRET;
+$site_key = HCAPTCHA_SITEKEY;
+$login_err = "";
+$pass_err = "";
+$user_err = "";
+$cap_error = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     //added hcapcha
     $response = $_POST['h-captcha-response'];
- 
-     $verify_url = 'https://hcaptcha.com/siteverify';
-     $data = [
-         'secret' => $secret_key,
-         'response' => $response
-     ];
- 
-     $options = [
-         'http' => [
-             'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-             'method' => 'POST',
-             'content' => http_build_query($data)
-         ]
-     ];
- 
-     $context = stream_context_create($options);
-     $result = file_get_contents($verify_url, false, $context);
-     $result_data = json_decode($result, true);
+
+    $verify_url = 'https://hcaptcha.com/siteverify';
+    $data = [
+        'secret' => $secret_key,
+        'response' => $response
+    ];
+
+    $options = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($data)
+        ]
+    ];
+
+    $context = stream_context_create($options);
+    $result = file_get_contents($verify_url, false, $context);
+    $result_data = json_decode($result, true);
 
 
-     if (!$result_data['success']) {
-         if(!DEV_MODE) {
-             echo 'Invalid hCaptcha verification. (You might be a bot)';
-             exit;
-         }
-     }
+    if (!$result_data['success']) {
+        if (!DEV_MODE) {
+            $_SESSION['captcha_err'] = 'Invalid hCaptcha verification. (You might be a bot)';
+            $cap_error = "Invalid hCaptcha verification.";
+            header("location: index.php");
+            exit;
+        }
+    }
 
-
-
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
-    } else{
+    if (empty(trim($_POST["username"]))) {
+        $_SESSION['username_err'] = "Please enter a username.";
+        $user_err = "Please enter username.";
+        header("location: index.php");
+        exit;
+    } else {
         $username = trim($_POST["username"]);
     }
 
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
-    } else{
+    if (empty(trim($_POST["password"]))) {
+        $_SESSION['password_err'] = "Please enter your password.";
+        $pass_err = "Please enter your password.";
+        header("location: index.php");
+        exit;
+    } else {
         $password = trim($_POST["password"]);
     }
 
@@ -83,4 +96,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     mysqli_close($link);
 }
+$_SESSION['login_err'] = $login_err;
+$_SESSION['username_err'] = $user_err;
+$_SESSION['password_err'] = $pass_err;
+$_SESSION['captcha_err'] = $cap_error;
+header("location: index.php");
+exit;
+
 ?>
