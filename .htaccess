@@ -11,7 +11,7 @@ RewriteRule ^(.+)$ $1.php [L,QSA]
 
 </IfModule>
 
-<Directory media/>
-     Order Deny,Allow
-     Deny from All
- </Directory>
+#<Directory media/>
+ #    Order Deny,Allow
+#     Deny from All
+# </Directory>
