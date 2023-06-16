@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if (!DEV_MODE) {
             $_SESSION['captcha_err'] = 'Invalid hCaptcha verification. (You might be a bot)';
             $cap_error = "Invalid hCaptcha verification.";
-            header("location: indexold.php");
+            header("location: index.php");
             exit;
         }
     }
@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if (empty(trim($_POST["username"]))) {
         $_SESSION['username_err'] = "Please enter a username.";
         $user_err = "Please enter username.";
-        header("location: indexold.php");
+        header("location: index.php");
         exit;
     } else {
         $username = trim($_POST["username"]);
@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if (empty(trim($_POST["password"]))) {
         $_SESSION['password_err'] = "Please enter your password.";
         $pass_err = "Please enter your password.";
-        header("location: indexold.php");
+        header("location: index.php");
         exit;
     } else {
         $password = trim($_POST["password"]);
@@ -100,7 +100,7 @@ $_SESSION['login_err'] = $login_err;
 $_SESSION['username_err'] = $user_err;
 $_SESSION['password_err'] = $pass_err;
 $_SESSION['captcha_err'] = $cap_error;
-header("location: indexold.php");
+header("location: index.php");
 exit;
 
 ?>
