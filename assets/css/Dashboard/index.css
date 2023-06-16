@@ -55,19 +55,19 @@ input[type=file] {
     font-size: 48px;
     font-weight: bold;
     font-family: Rubik, sans-serif;
-    color: #6c5ce7;
+    color: #c95ce7;
     animation: rip-glow 2s infinite;
 }
 
 @keyframes rip-glow {
     0% {
-        text-shadow: 0 0 5px #6c5ce7, 0 0 10px #6c5ce7, 0 0 15px #6c5ce7, 0 0 20px #6c5ce7;
+        text-shadow: 0 0 5px #c95ce7, 0 0 10px #d45ce7, 0 0 15px #c45ce7, 0 0 20px #ce5ce7;
     }
     50% {
         text-shadow: none;
     }
     100% {
-        text-shadow: 0 0 5px #6c5ce7, 0 0 10px #6c5ce7, 0 0 15px #6c5ce7, 0 0 20px #6c5ce7;
+        text-shadow: 0 0 5px #c95ce7, 0 0 10px #c95ce7, 0 0 15px #d45ce7, 0 0 20px #ce5ce7;
     }
 }
 
@@ -110,6 +110,11 @@ input[type=file] {
     margin-bottom: 10px;
 }
 
+.infobox h4 {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
 .infobox p {
     font-size: 18px;
 }
@@ -129,8 +134,8 @@ input[type=file] {
 }
 
 .control-container b {
-    color: mediumpurple;
-    text-shadow: 0 0 8px rebeccapurple;
+    color: #cd70db;
+    text-shadow: 0 0 8px #8f3399;
     background-image: url("https://static.nulled.to/public/assets/sparkling.gif");
     background-repeat: repeat;
 }
@@ -258,4 +263,14 @@ input[type=file] {
 
 .box-container .button:hover {
     background-color: #252525;
+}
+
+.blur-on-hover {
+    filter: blur(4px);
+    transition: filter 0.3s ease-in-out;
+    font-size: 1px;
+}
+
+.blur-on-hover:hover {
+    filter: none;
 }

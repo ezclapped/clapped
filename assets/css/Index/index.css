@@ -21,7 +21,7 @@ input[type=file] {
 }
 
 .loginButton {
-    background-color: #301467;
+    background-color: #4b1467;
     color: white;
     padding: 10px 30px;
     margin: 0 10px;
@@ -34,7 +34,7 @@ input[type=file] {
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 25px #392360;
+    box-shadow: 0 0 25px #4c2360;
     z-index: 1;
 }
 
@@ -64,7 +64,7 @@ input[type=file] {
 }
 
 .loginButton:hover {
-    box-shadow: 0 0 30px #6c5ce7;
+    box-shadow: 0 0 30px #c95ce7;
     transform: scale(1.05);
 }
 
@@ -163,19 +163,19 @@ input[type=file] {
     font-size: 48px;
     font-weight: bold;
     font-family: Rubik, sans-serif;
-    color: #6c5ce7;
+    color: #b45ce7;
     animation: rip-glow 2s infinite;
 }
 
 @keyframes rip-glow {
     0% {
-        text-shadow: 0 0 5px #6c5ce7, 0 0 10px #6c5ce7, 0 0 15px #6c5ce7, 0 0 20px #6c5ce7;
+        text-shadow: 0 0 5px #c95ce7, 0 0 10px #b95ce7, 0 0 15px #c05ce7, 0 0 20px #c05ce7;
     }
     50% {
         text-shadow: none;
     }
     100% {
-        text-shadow: 0 0 5px #6c5ce7, 0 0 10px #6c5ce7, 0 0 15px #6c5ce7, 0 0 20px #6c5ce7;
+        text-shadow: 0 0 5px #d45ce7, 0 0 10px #c05ce7, 0 0 15px #d95ce7, 0 0 20px #ce5ce7;
     }
 }
 
