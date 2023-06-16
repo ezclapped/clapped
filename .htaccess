@@ -4,14 +4,28 @@ RewriteEngine on
 # Redirect to PHP if it exists.
 # e.g. example.com/foo will display the contents of example.com/foo.php
 
-RewriteCond %{REQUEST_FILENAME} !-f;
-RewriteCond %{REQUEST_FILENAME} !-d;
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.+)$ $1.php [L,QSA]
 
-</IfModule>
+# Redirect to CSS if it exists.
+# e.g. example.com/style will load the contents of example.com/style.css
 
-<Directory media/>
-     Order Deny,Allow
-     Deny from All
- </Directory>
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.css -f
+RewriteRule ^(.+)$ $1.css [L,QSA]
+
+# Custom Error Pages for 404 and 403
+ErrorDocument 404 /error.html
+ErrorDocument 403 /error.html
+
+# protect admin_check
+<Files ~ admin_check.php>
+    Deny from all
+</Files>
+
+
+</IfModule>
