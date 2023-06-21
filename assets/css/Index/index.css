@@ -5,7 +5,8 @@ body {
     color: white;
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    overflow: hidden;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 input[type=file] {
@@ -21,7 +22,7 @@ input[type=file] {
 }
 
 .loginButton {
-    background-color: #4b1467;
+    background-color: #301467;
     color: white;
     padding: 10px 30px;
     margin: 0 10px;
@@ -34,7 +35,7 @@ input[type=file] {
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 25px #4c2360;
+    box-shadow: 0 0 25px #392360;
     z-index: 1;
 }
 
@@ -64,7 +65,7 @@ input[type=file] {
 }
 
 .loginButton:hover {
-    box-shadow: 0 0 30px #c95ce7;
+    box-shadow: 0 0 30px #6c5ce7;
     transform: scale(1.05);
 }
 
@@ -163,19 +164,19 @@ input[type=file] {
     font-size: 48px;
     font-weight: bold;
     font-family: Rubik, sans-serif;
-    color: #b45ce7;
+    color: #6c5ce7;
     animation: rip-glow 2s infinite;
 }
 
 @keyframes rip-glow {
     0% {
-        text-shadow: 0 0 5px #c95ce7, 0 0 10px #b95ce7, 0 0 15px #c05ce7, 0 0 20px #c05ce7;
+        text-shadow: 0 0 5px #6c5ce7, 0 0 10px #6c5ce7, 0 0 15px #6c5ce7, 0 0 20px #6c5ce7;
     }
     50% {
         text-shadow: none;
     }
     100% {
-        text-shadow: 0 0 5px #d45ce7, 0 0 10px #c05ce7, 0 0 15px #d95ce7, 0 0 20px #ce5ce7;
+        text-shadow: 0 0 5px #6c5ce7, 0 0 10px #6c5ce7, 0 0 15px #6c5ce7, 0 0 20px #6c5ce7;
     }
 }
 
@@ -188,6 +189,8 @@ input[type=file] {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-bottom: -10px;
+    width: 100%;
 }
 
 .box-container {
@@ -248,5 +251,211 @@ input[type=file] {
     left: 0;
     right: 0;
     height: 100vh;
+    width: auto;
+    margin-left: 20px;
     z-index: -1;
+}
+
+.wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+
+    z-index: -1;
+    width: 100%;
+    background: url('https://beta.print-screen.dev/assets/images/welcome/wave_gray.png') bottom center / cover no-repeat, #191919;
+}
+
+
+.content-container {
+    padding-top: 10px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    background-color: #161616;
+}
+
+.wave_black {
+    background-color: #0d0d0d;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.news-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.news-title {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.news-description {
+    color: white;
+    font-size: 18px;
+}
+
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #1E1E1E;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6c5ce7;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #7d64db;
+}
+
+
+@font-face {
+    font-family: gilroy_bold;
+    src: url(/assets/fonts/Gilroy-Bold.ttf)
+}
+
+@font-face {
+    font-family: gilroy_medium;
+    src: url(/assets/fonts/Gilroy-Medium.ttf)
+}
+
+@font-face {
+    font-family: gilroy_light;
+    src: url(/assets/fonts/Gilroy-Light.ttf)
+}
+
+.buffer-1 {
+    height: 50px;
+}
+
+.bg-ps {
+    background-color: #1e1e1e;
+    border: 1px solid #7371fc
+}
+
+.text-force {
+    font-family: "gilroy_medium";
+    color: white !important;
+}
+
+.text-small-mid {
+    width: 70%;
+}
+
+
+.wave {
+    width: 100%;
+    filter: drop-shadow(0px 0px 0px rgba(0,0,0,1));
+}
+
+.gray {
+    filter: drop-shadow(0px 0px 0px rgba(70,70,70,1));
+}
+
+.wave_black {
+    background-color: #0d0d0d;
+}
+
+.wave_gray {
+    background-color: #161616;
+}
+
+@-moz-document url-prefix() {
+    .wave_black {
+        background-color: #050505;
+    }
+
+    .wave_gray {
+        background-color: #0e0e0e;
+    }
+}
+
+.text-small {
+    font-family: "gilroy_light";
+    color: #BCBCBC;
+}
+
+.text-white {
+    color: white !important;
+}
+
+.ps-color {
+    color: #7371fc !important;
+    font-family: "gilroy_bold";
+}
+
+.mobile_fix {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+@media (max-width : 1024px) {
+    .mobile_fix {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .mobile-text {
+        text-align: center;
+    }
+
+    .col-2 {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    .mobile-offset {
+        margin-left: 0 !important;
+    }
+
+}
+
+.team {
+    border-radius: 20px;
+}
+
+.avatar {
+    border-radius: 50%;
+    object-fit: cover;
+
+
+}
+
+
+.text_animation {
+    background: linear-gradient(to right,#8785fb,#3836b8,#8785fb,#3836b8,#8785fb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0
+    }
+
+    50% {
+        background-position: 100% 0
+    }
 }
