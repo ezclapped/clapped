@@ -60,9 +60,12 @@ $username_err = $password_err = $confirm_password_err = $licence_key_err = $capt
                             </div>
                             <input type="password" name="password" placeholder="Password" class="bg-secondary text-gray-400 w-full p-4 focus:bg-primary focus:ring-0">
                         </div>
-                        <?php if (!empty($password_err)): ?>
-                            <p class="text-red-500"><?php echo $password_err; ?></p>
-                        <?php endif; ?>
+                        <?php
+                        if(isset($_SESSION['password_err'])) {
+                            echo '<p name="password-error" id="password-error" class="text-sm text-red-500 text-left mt-1.5">'. $_SESSION['password_err'] .'</p>';
+                            unset($_SESSION['password_err']);
+                        }
+                        ?>
                     </div>
 
                     <div class="mb-3 w-full text-left input-container">
@@ -73,9 +76,12 @@ $username_err = $password_err = $confirm_password_err = $licence_key_err = $capt
                             </div>
                             <input type="password" name="password_confirmation" placeholder="Confirm Password" class="bg-secondary text-gray-400 w-full p-4 focus:bg-primary focus:ring-0">
                         </div>
-                        <?php if (!empty($confirm_password_err)): ?>
-                            <p class="text-red-500"><?php echo $confirm_password_err; ?></p>
-                        <?php endif; ?>
+                        <?php
+                        if(isset($_SESSION['password_confirm_err'])) {
+                            echo '<p name="passwordconfirm-error" id="passwordconfirm-error" class="text-sm text-red-500 text-left mt-1.5">'. $_SESSION['password_confirm_err'] .'</p>';
+                            unset($_SESSION['password_confirm_err']);
+                        }
+                        ?>
                     </div>
 
                     <div class="mb-3 w-full text-left input-container">
@@ -85,14 +91,24 @@ $username_err = $password_err = $confirm_password_err = $licence_key_err = $capt
                                 <i class="fas fa-key"></i>
                             </div>
                             <input type="text" name="license_key" placeholder="License Key" class="bg-secondary text-gray-400 w-full p-4 focus:bg-primary focus:ring-0">
-
                         </div>
+                        <?php
+                        if(isset($_SESSION['license_err'])) {
+                            echo '<p name="license-error" id="license-error" class="text-sm text-red-500 text-left mt-1.5">'. $_SESSION['license_err'] .'</p>';
+                            unset($_SESSION['license_err']);
+                        }
+                        ?>
                     </div>
 
                     <div class="flex justify-center my-4">
                         <div class="h-captcha" data-theme="dark" data-size="normal" data-sitekey="<?php echo $site_key; ?>"></div>
-                        <span class="invalid-feedback"><?php echo $captcha_err; ?></span>
                     </div>
+                    <?php
+                    if(isset($_SESSION['captcha_err'])) {
+                        echo '<p name="captcha-error" id="captcha-error" class="text-sm text-red-500 text-left mt-1.5">'. $_SESSION['captcha_err'] .'</p>';
+                        unset($_SESSION['captcha_err']);
+                    }
+                    ?>
 
                     <div class="mx-auto my-6 max-w-xs">
                         <p style="color: gray">
